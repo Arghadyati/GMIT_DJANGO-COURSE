@@ -88,6 +88,13 @@ def deletepost(request,id):
         if request.method == 'POST':
             pi = Post.objects.get(pk=id)
             pi.delete()
-        return render(request,'/dashboard')
+            posts=Post.objects.all()
+            user=request.user
+            full_name=user.get_full_name()
+        return render(request,'dashboard.html',{'posts':posts,'full_name':full_name})
     else:
         return HttpResponseRedirect('/login/')
+
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect('/')

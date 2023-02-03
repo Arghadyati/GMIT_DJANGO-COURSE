@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/home/">Ecommerce</a>
+      <a class="navbar-brand" href="/home/">E-Commerce</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -10,10 +10,7 @@
           <li class="nav-item">
             <a class="nav-link {% if request.path == "/home/" %} active {% endif %}" aria-current="page" href="/home/">Home</a>
           </li>
-
-          <li class="nav-item">
-            <a class="nav-link {% if request.path == "/dashboard/" %} active {% endif %}" aria-current="page" href="/dashboard/">Dashboard</a>
-          </li>
+          
 
           <li class="nav-item">
             <a class="nav-link {% if request.path == "/contact/" %} active {% endif %}" aria-current="page" href="/contact/">Contact</a>
@@ -26,7 +23,15 @@
           <li class="nav-item">
             <a class="nav-link {% if request.path == "/admin/" %} active {% endif %}" aria-current="page" href="/admin/">Admin Panel</a>
           </li>
-
+          {%if request.user.is_authenticated%}
+          <li class="nav-item">
+            <a class="nav-link {% if request.path == "/dashboard/" %} active {% endif %}" aria-current="page" href="/dashboard/">Dashboard</a>
+          </li>
+            
+          <li class="nav-item">
+            <a class="nav-link {% if request.path == "/logout/" %} active {% endif %}" aria-current="page" href="/logout/">Logout</a>
+          </li>
+          {%else%}
           <li class="nav-item">
             <a class="nav-link {% if request.path == "/signup/" %} active {% endif %}" aria-current="page" href="/signup/">Register</a>
           </li>
@@ -34,7 +39,7 @@
           <li class="nav-item">
             <a class="nav-link {% if request.path == "/login/" %} active {% endif %}" aria-current="page" href="/login/">Login</a>
           </li>
-          
+          {% endif %}
           
         </ul>
         <form class="d-flex">
